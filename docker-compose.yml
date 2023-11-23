@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  flask-api:
+    build: ./api
+    container_name: flask_api
+    restart: always
+    privileged: true
+    volumes:
+      - ./api:/usr/src/app/
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports: 
+          - 5001:5001
+    environment: 
+        PORT: 5001
+        FLASK_DEBUG: 1
+        SECRET_KEY: my-secret-key
+    networks:
+      - my-network  
+  nginx:
+    image: nginx:latest
+    container_name: flask_api_proxy
+    build: ./nginx
+    restart: always
+    ports:
+      - "443:443"
+    depends_on:
+      - flask-api
+    volumes:
+      - ./nginx/logs:/var/log/nginx 
+    networks:
+      - my-network  
+
+networks:
+  my-network:
+    driver: bridge

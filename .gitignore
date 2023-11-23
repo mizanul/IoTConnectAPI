@@ -1,0 +1,6 @@
+node_modules
+venv
+__pycache__
+logs
+app.log
+.DS_Store

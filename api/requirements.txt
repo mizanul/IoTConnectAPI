@@ -1,0 +1,11 @@
+Flask==2.0.3
+Werkzeug==2.0.3
+Jinja2==3.0.3
+Itsdangerous==2.0.1
+Click==8.0.4
+MarkupSafe==2.0.1
+psutil==5.9.6
+docker
+pytest
+requests 
+mock
